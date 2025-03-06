@@ -1,11 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, SafeAreaView, ScrollView, Text, StyleSheet } from "react-native";
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>🏠 Home Screen</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.title}>🏠 Home Screen</Text>
+      </View>
+      {/* Main Content */}
+      <ScrollView></ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -16,7 +21,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#fff",
   },
-  text: {
+  header: {
+    paddingVertical: 20,
+    paddingTop: 40,
+    backgroundColor: "#f0f0f0",
+    width: "100%",
+    alignItems: "center",
+  },
+  title: {
     fontSize: 20,
     fontWeight: "bold",
   },
