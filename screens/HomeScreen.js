@@ -1,17 +1,31 @@
 import React from "react";
-import { View, SafeAreaView, ScrollView, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import {
+  View,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 // Post component to represent each tweet in the feed
-const Post = ({ user, content, time, comments, retweets, likes, hasImage, imageUrl }) => {
+const Post = ({
+  user,
+  content,
+  time,
+  comments,
+  retweets,
+  likes,
+  hasImage,
+  imageUrl,
+}) => {
   return (
     <View style={styles.postContainer}>
       <View style={styles.postHeader}>
-        <Image 
-          source={{ uri: user.profilePic }} 
-          style={styles.profilePic} 
-        />
+        <Image source={{ uri: user.profilePic }} style={styles.profilePic} />
         <View style={styles.userInfo}>
           <View style={styles.nameContainer}>
             <Text style={styles.userName}>{user.name}</Text>
@@ -21,41 +35,41 @@ const Post = ({ user, content, time, comments, retweets, likes, hasImage, imageU
           <Text style={styles.postContent}>{content}</Text>
         </View>
       </View>
-      
+
       {hasImage && (
         <View style={styles.imageContainer}>
-          <Image 
-            source={{ uri: imageUrl }} 
-            style={styles.postImage} 
+          <Image
+            source={{ uri: imageUrl }}
+            style={styles.postImage}
             resizeMode="cover"
           />
         </View>
       )}
-      
+
       <View style={styles.engagement}>
-      {/* Message */}
-      <TouchableOpacity style={styles.engagementItem}>
-        <Icon name="comment-outline" size={22} color="#657786" />
-        <Text style={styles.engagementText}>{comments}</Text>
-      </TouchableOpacity>
+        {/* Message */}
+        <TouchableOpacity style={styles.engagementItem}>
+          <Icon name="comment-outline" size={22} color="#657786" />
+          <Text style={styles.engagementText}>{comments}</Text>
+        </TouchableOpacity>
 
-      {/* Retweet */}
-      <TouchableOpacity style={styles.engagementItem}>
-        <Icon name="repeat" size={22} color="#657786" />
-        <Text style={styles.engagementText}>{retweets}</Text>
-      </TouchableOpacity>
+        {/* Retweet */}
+        <TouchableOpacity style={styles.engagementItem}>
+          <Icon name="repeat" size={22} color="#657786" />
+          <Text style={styles.engagementText}>{retweets}</Text>
+        </TouchableOpacity>
 
-      {/* Like (Heart) */}
-      <TouchableOpacity style={styles.engagementItem}>
-        <Icon name="heart-outline" size={22} color="#657786" />
-        <Text style={styles.engagementText}>{likes}</Text>
-      </TouchableOpacity>
+        {/* Like (Heart) */}
+        <TouchableOpacity style={styles.engagementItem}>
+          <Icon name="heart-outline" size={22} color="#657786" />
+          <Text style={styles.engagementText}>{likes}</Text>
+        </TouchableOpacity>
 
-      {/* Share */}
-      <TouchableOpacity style={styles.engagementItem}>
-        <Icon name="share-outline" size={22} color="#657786" />
-      </TouchableOpacity>
-    </View>
+        {/* Share */}
+        <TouchableOpacity style={styles.engagementItem}>
+          <Icon name="share-outline" size={22} color="#657786" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -70,7 +84,8 @@ export default function HomeScreen() {
         handle: "@andy_landerson",
         profilePic: "https://picsum.photos/id/64/200",
       },
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ex nulla. Pellentesque eu tortor a odio sagittis placerat. Proin sit amet ornare ante.",
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ex nulla. Pellentesque eu tortor a odio sagittis placerat. Proin sit amet ornare ante.",
       time: "5m",
       comments: 15,
       retweets: 26,
@@ -84,7 +99,8 @@ export default function HomeScreen() {
         handle: "@rodrisurfer",
         profilePic: "https://picsum.photos/id/1025/200",
       },
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ex nulla. Pellentesque eu tortor a odio sagittis placerat. Proin sit amet ornare ante.",
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ex nulla. Pellentesque eu tortor a odio sagittis placerat. Proin sit amet ornare ante.",
       time: "1h",
       comments: 42,
       retweets: 87,
@@ -99,7 +115,8 @@ export default function HomeScreen() {
         handle: "@sophiathinks",
         profilePic: "https://picsum.photos/id/65/200",
       },
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Mauris convallis feugiat metus eu varius.",
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Mauris convallis feugiat metus eu varius.",
       time: "2h",
       comments: 5,
       retweets: 12,
@@ -113,7 +130,8 @@ export default function HomeScreen() {
         handle: "@marcod",
         profilePic: "https://picsum.photos/id/91/200",
       },
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.",
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.",
       time: "3h",
       comments: 23,
       retweets: 7,
@@ -127,11 +145,17 @@ export default function HomeScreen() {
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.title}>🏠 Home Screen</Text>
+        <View style={styles.searchBar}>
+          <TextInput style={styles.searchInput} placeholder="Search Twitter" />
+        </View>
       </View>
-      
+
       {/* Main Content */}
-      <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
-        {posts.map(post => (
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.contentContainer}
+      >
+        {posts.map((post) => (
           <Post
             key={post.id}
             user={post.user}
@@ -236,5 +260,19 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     color: "#657786",
     fontSize: 14,
+  },
+  searchBar: {
+    width: "80%",
+    paddingHorizontal: 15,
+    marginTop: 10,
+    alignItems: "center",
+  },
+  searchInput: {
+    backgroundColor: "#F5F8FA",
+    height: 40,
+    width: "100%",
+    textAlign: "center",
+    borderRadius: 20,
+    fontSize: 16,
   },
 });

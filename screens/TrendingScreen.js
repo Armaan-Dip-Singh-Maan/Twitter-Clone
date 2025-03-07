@@ -1,6 +1,14 @@
 import React from "react";
-import { View, SafeAreaView, ScrollView, Text, StyleSheet, TouchableOpacity } from "react-native";
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {
+  View,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 // Trending Item component
 const TrendingItem = ({ rank, category, title, description, tweetCount }) => {
@@ -12,17 +20,17 @@ const TrendingItem = ({ rank, category, title, description, tweetCount }) => {
           {category && <Text style={styles.categoryText}>{category} · </Text>}
           <Text style={styles.trendingLabel}>Trending</Text>
         </View>
-        
+
         <Text style={styles.trendingTitle}>{title}</Text>
         <Text style={styles.trendingDescription}>{description}</Text>
-        
+
         <Text style={styles.tweetCount}>
-          {typeof tweetCount === 'number' 
-            ? `${tweetCount.toLocaleString()} Tweets` 
+          {typeof tweetCount === "number"
+            ? `${tweetCount.toLocaleString()} Tweets`
             : tweetCount}
         </Text>
       </View>
-      
+
       <View style={styles.chevronContainer}>
         <Icon name="chevron-down" size={20} color="#657786" />
       </View>
@@ -39,7 +47,7 @@ export default function TrendingScreen() {
       title: "Lorem Ipsum Headline",
       description: "Lorem ipsum dolor sit amet consectetur",
       tweetCount: 25500,
-      category: ""
+      category: "",
     },
     {
       id: 2,
@@ -47,7 +55,7 @@ export default function TrendingScreen() {
       title: "#LoremIpsumTag",
       description: "",
       tweetCount: "9,235 people are Tweeting about this",
-      category: ""
+      category: "",
     },
     {
       id: 3,
@@ -55,7 +63,7 @@ export default function TrendingScreen() {
       title: "#WednesdayThoughts",
       description: "",
       tweetCount: 30700,
-      category: ""
+      category: "",
     },
     {
       id: 4,
@@ -63,7 +71,7 @@ export default function TrendingScreen() {
       title: "Consectetur Adipiscing",
       description: "",
       tweetCount: "4,301 people are Tweeting about this",
-      category: "Sports"
+      category: "Sports",
     },
     {
       id: 5,
@@ -71,7 +79,7 @@ export default function TrendingScreen() {
       title: "#BreakingUpdate",
       description: "",
       tweetCount: 51100,
-      category: "Politics"
+      category: "Politics",
     },
     {
       id: 6,
@@ -79,7 +87,7 @@ export default function TrendingScreen() {
       title: "#QuickQuestionIn4Words",
       description: "",
       tweetCount: "8,277 people are Tweeting about this",
-      category: ""
+      category: "",
     },
     {
       id: 7,
@@ -87,7 +95,7 @@ export default function TrendingScreen() {
       title: "Nullam Porttitor",
       description: "Lorem ipsum dolor sit amet consectetur",
       tweetCount: 12800,
-      category: "Science"
+      category: "Science",
     },
   ];
 
@@ -96,7 +104,9 @@ export default function TrendingScreen() {
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.title}>🔥 Trending Screen</Text>
-        {/* Search bar and selection boxes with trending selected, blue text and border bottom */}
+        <View style={styles.searchBar}>
+          <TextInput style={styles.searchInput} placeholder="Search Twitter" />
+        </View>
         <View style={styles.selectionBoxes}>
           <View style={styles.selectionBox}>
             <Text style={styles.selectionText}>For You</Text>
@@ -114,13 +124,16 @@ export default function TrendingScreen() {
           </View>
         </View>
       </View>
-      
+
       {/* Main Content */}
-      <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.contentContainer}
+      >
         <View style={styles.locationHeader}>
           <Text style={styles.locationText}>Canadian Trends</Text>
         </View>
-        
+
         {/* Trending Items */}
         {trendingItems.map((item) => (
           <TrendingItem
@@ -238,5 +251,19 @@ const styles = StyleSheet.create({
   chevronContainer: {
     justifyContent: "center",
     paddingLeft: 10,
+  },
+  searchBar: {
+    width: "80%",
+    paddingHorizontal: 15,
+    marginTop: 10,
+    alignItems: "center",
+  },
+  searchInput: {
+    backgroundColor: "#F5F8FA",
+    height: 40,
+    width: "100%",
+    textAlign: "center",
+    borderRadius: 20,
+    fontSize: 16,
   },
 });
