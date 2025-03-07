@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     color: "#787878",
-    paddingBottom: 20,
+    paddingBottom: 10,
   },
   selectedText: {
     color: "#007AFF",
